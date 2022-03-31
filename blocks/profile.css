@@ -1,0 +1,70 @@
+.profile {
+    display: flex;
+    color: #fff;
+    width: 100%;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.profile__image {
+    border-radius: 50%;
+    max-width: 120px;
+    max-height: 120px;
+}
+  
+.profile__info {
+    flex-grow: 1;
+}
+  
+.profile__person {
+    display: flex;
+    gap: 18px;
+    align-items: flex-end;
+}
+  
+.profile__name {
+    padding: 0;
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.14;
+    font-weight: 500;
+}
+  
+.profile__title {
+    padding: 0;
+    margin: 9px 0 0;
+}
+
+.profile__add-button {
+    background-color: transparent;
+    background: url("../images/icons/add_icon.svg") center no-repeat;
+    background-size: 22px 22px;
+    padding: calc(12px + (22px / 2)) calc(62px + (22px / 2));
+    border: 2px solid #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+  }
+  
+.profile__add-button:hover {
+    opacity: 0.6;
+}
+  
+.profile__edit-button {
+    background-color: transparent;
+    background: url("../images/icons/edit_icon.svg") center no-repeat;
+    background-size: 10px 10px;
+    padding: calc(9px + (10px / 4));
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    margin-bottom: 7px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+  
+.profile__edit-button:hover {
+    opacity: 0.6;
+}

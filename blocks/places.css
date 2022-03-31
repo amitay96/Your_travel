@@ -1,0 +1,12 @@
+.place {
+    margin-bottom: 67px;
+}
+.places__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    justify-content: center;
+    gap: 20px 17px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}

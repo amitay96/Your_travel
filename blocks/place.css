@@ -1,0 +1,61 @@
+.place {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-height: 367px;
+}
+  
+.place__image {
+    width: 100%;
+    display: block;
+    border-radius: 10px 10px 0 0;
+    min-height: 285px;
+    object-fit: cover;
+}
+  
+.place__title-area {
+    background-color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px 24px 21px;
+    border-radius: 0 0 10px 10px;
+}
+  
+.place__title {
+    margin: 0;
+    padding: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-grow: 1;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.2;
+}
+  
+.place__like-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    background: url("../images/icons/like_icon.svg") center no-repeat;
+    background-size: cover;
+    min-width: 21px;
+    min-height: 19px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+  
+.place__like-button:hover {
+    opacity: 0.5;
+}
+  
+.place__like-button_active {
+    background-image: url("../images/icons/like_icon-filled.svg");
+}
