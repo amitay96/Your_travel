@@ -1,0 +1,44 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    font-size: 14px;
+    line-height: 1.21;
+    max-width: 358px;
+    width: 358px;
+}
+
+.form__fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border: none;
+    padding: 0;
+}
+.form__input {
+    /* padding: 13px 7px; */
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+    height: 27px;
+}
+
+.form__button {
+    background-color: #000;
+    color: #FFF;
+    height: 50.15px;
+    padding: 0;
+    border: none;
+    border-radius: 2px;
+    transition: all 0.2s ease-out;
+}
+
+.form__button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 620px) {
+    .form {
+      width: 100%;
+      max-width: none;
+    }
+  }

@@ -35,35 +35,35 @@
                 </div>
               </li>
               <li class="place">
-                <img src="./images/item_2.jpg" class="place__image" alt="Beautiful Yosemite Valley"/>
+                <img src="./images/item_2.jpg" class="place__image" alt="Lake Louise between two mountains"/>
                 <div class="place__title-area">
                   <h2 class="place__title">Lake Louise</h2>
                   <button class="place__like-button" type="button"></button>
                 </div>
               </li>
               <li class="place">
-                <img src="./images/item_3.jpg" class="place__image" alt="Beautiful Yosemite Valley"/>
+                <img src="./images/item_3.jpg" class="place__image" alt="View on some bald mountains and sun"/>
                 <div class="place__title-area">
                   <h2 class="place__title">Bald Mountains</h2>
                   <button class="place__like-button" type="button"></button>
                 </div>
               </li>
               <li class="place">
-                <img src="./images/item_4.jpg" class="place__image" alt="Beautiful Yosemite Valley"/>
+                <img src="./images/item_4.jpg" class="place__image" alt="Latemar mountains at night"/>
                 <div class="place__title-area">
                   <h2 class="place__title">Latemar</h2>
                   <button class="place__like-button" type="button"></button>
                 </div>
               </li>
               <li class="place">
-                <img src="./images/item_5.jpg" class="place__image" alt="Beautiful Yosemite Valley"/>
+                <img src="./images/item_5.jpg" class="place__image" alt="pastoralic view on Vancise national park"/>
                 <div class="place__title-area">
                   <h2 class="place__title">Vanoise Nationa...</h2>
                   <button class="place__like-button" type="button"></button>
                 </div>
               </li>
               <li class="place">
-                <img src="./images/item_6.jpg" class="place__image" alt="Beautiful Yosemite Valley"/>
+                <img src="./images/item_6.jpg" class="place__image" alt="boats on the Lago di Braies"/>
                 <div class="place__title-area">
                   <h2 class="place__title">Lago di Braies</h2>
                   <button class="place__like-button" type="button"></button>
@@ -71,9 +71,25 @@
               </li>
             </ul>
         </section>
+      </main>
         <footer class="footer">
             <p class="footer__copyright">© 2022 Around The U.S.</p>
         </footer>
-    </main> 
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button"></button>
+        <h2 class="popup__title">Edit profile</h2>
+        <form class="form" name="edit-form" >
+          <fieldset class="form__fieldset">
+            <input type="text" name="name" placeholder="Name" class="form__input" required/>
+            <input type="text" name="title" placeholder="About me" class="form__input" required/>
+          </fieldset>
+          <fieldset class="form__fieldset">
+            <button class="form__button" type="submit">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>
