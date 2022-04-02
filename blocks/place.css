@@ -20,7 +20,6 @@
     overflow: hidden;
     display: flex;
     gap: 8px;
-    justify-content: center;
     align-items: center;
     padding: 25px 15px 24px 21px;
     border-radius: 0 0 10px 10px;
@@ -35,6 +34,7 @@
     font-weight: 900;
     font-size: 24px;
     line-height: 1.2;
+    text-align: left;
 }
   
 .place__like-button {

@@ -1,5 +1,5 @@
-.place {
-    margin-bottom: 67px;
+.places {
+    margin: 0 auto 67px;
 }
 .places__list {
     display: grid;

@@ -1,4 +1,18 @@
 .logo {
-    max-width: 173px;
-    max-height: 33px;
+  max-width: 173px;
+  max-height: 33px;
+  padding-bottom: 41px;
+}
+
+@media screen and (max-width: 900px) {
+  .logo {
+    padding: 0 0 32px 27px;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    max-width: 126px;
+    max-height: 24px;
+  }
+}

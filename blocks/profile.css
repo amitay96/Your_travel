@@ -35,6 +35,7 @@
 .profile__title {
     padding: 0;
     margin: 9px 0 0;
+    line-height: 1.22;
 }
 
 .profile__add-button {
@@ -57,7 +58,8 @@
     background-color: transparent;
     background: url("../images/icons/edit_icon.svg") center no-repeat;
     background-size: 10px 10px;
-    padding: calc(9px + (10px / 4));
+    width: 24px;
+    height: 24px;
     border: 1px solid #fff;
     box-sizing: border-box;
     margin-bottom: 7px;
@@ -70,6 +72,25 @@
 }
 @media screen and (max-width: 620px) {
     .profile {
+        margin: 0 auto 36px;
         flex-direction: column;
+        text-align: center;
+    }
+
+    .profile__name {
+        font-size: 22px;
+        line-height: 1.22;
+    }
+    .profile__title {
+        font-size: 14px;
+    }
+    .profile__add-button {
+        background-size: 16px 16px;
+        width: 282px;
+    }
+    .profile__edit-button {
+        background-size: 7.5px 7.5px;
+        width: 18px;
+        height: 18px;
     }
 }
