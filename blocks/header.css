@@ -3,11 +3,11 @@
     border-bottom: 1px solid rgba(84, 84, 84, 0.7);
     width: 100%;
     margin: 45px auto 40px;
+    line-height: 0;
 }
 
 @media screen and (max-width: 600px) {
     .header {
       margin: 28px auto 32px;
-      /* padding: 0 19px; */
     }
 }
