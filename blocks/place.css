@@ -1,8 +1,6 @@
 .place {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    min-height: 367px;
+    margin: 0;
+    padding: 0;
 }
   
 .place__image {
@@ -15,9 +13,6 @@
   
 .place__title-area {
     background-color: white;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     display: flex;
     gap: 8px;
     align-items: center;

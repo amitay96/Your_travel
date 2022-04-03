@@ -11,7 +11,7 @@
     font-family: "Inter", Arial, sans-serif;
     font-weight: 400;
     font-size: 18px;
-    line-height: 1.22;
+    box-sizing: border-box;
   }
 
 .popup__active {
@@ -53,15 +53,18 @@
         padding-right: 19px;
         box-sizing: border-box;
     }
+
       .popup__container {
         width: 100%;
         padding: 25px 22px;
     }
+
       .popup__close-button {
         background-size: 20px 20px;
         top: -49px;
         right: 7px;
     }
+
     .popup__title {
         margin-bottom: 76px;
         font-size: 18px;
