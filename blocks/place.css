@@ -61,3 +61,7 @@
     z-index: 1;
     cursor: pointer;
 }
+
+.place__delete_button:hover {
+    opacity: 0.5;
+}

@@ -1,4 +1,4 @@
-.popup__container_type_image {
+.image-popup__container {
     position: relative;
     color: #FFF;
     margin: 0;
@@ -6,4 +6,6 @@
 
 .popup__caption {
     margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.25;
 }
