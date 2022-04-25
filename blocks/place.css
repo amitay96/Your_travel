@@ -1,6 +1,7 @@
 .place {
     margin: 0;
     padding: 0;
+    position: relative;
 }
   
 .place__image {
@@ -50,5 +51,13 @@
 }
   
 .place__like-button_active {
-    background-image: url("../images/icons/like_icon-active.svg");
+    background: url("../images/icons/like_icon-active.svg");
+}
+
+.place__delete_button {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    z-index: 1;
+    cursor: pointer;
 }

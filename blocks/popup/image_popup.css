@@ -1,0 +1,9 @@
+.popup__container_type_image {
+    position: relative;
+    color: #FFF;
+    margin: 0;
+}
+
+.popup__caption {
+    margin-top: 10px;
+}

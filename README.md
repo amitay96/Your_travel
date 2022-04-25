@@ -10,7 +10,7 @@
   
 **Intro**    
   
-This is a project that represents a profile of one traveler and the places he went with pictures and option to like.
+This is a project that represents a profile managment of one traveler and the places he went with pictures and option to like and add photos.
   
 ## Project features
 
@@ -18,7 +18,7 @@ This is a project that represents a profile of one traveler and the places he we
 - Flexbox
 - Positioning
 - BEM Methodology
-- A custom form
+- Custom forms
 - CSS Adaptive layout
 - JavaScript application
 

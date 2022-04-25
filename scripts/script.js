@@ -1,56 +1,60 @@
 const initialCards = [
   {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    name: "Antelope Canyon",
+    link: "https://images.unsplash.com/photo-1527285489-efa8f4ea8b0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
   },
   {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    name: "Salt Creek Falls",
+    link: "https://images.unsplash.com/photo-1494472155656-f34e81b17ddc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
   },
   {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    name: "Truckee",
+    link: "https://images.unsplash.com/photo-1516683179282-b7f603ab6eba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
   },
   {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    name: "Lake Powell",
+    link: "https://images.unsplash.com/photo-1516557139510-13450f7d3124?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
   },
   {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    name: "Grand Canyon Village",
+    link: "https://images.unsplash.com/photo-1482709746041-1adc5a8aef00?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   },
   {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    name: "Miami Beach",
+    link: "https://images.unsplash.com/photo-1605723517503-3cadb5818a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   }
 ];
 
 
 //----------------Modals----------------
 const profile = document.querySelector(".profile");
-const form = document.querySelector(".form");
 const editPopup = document.querySelector(".edit-popup");
 const addPopup = document.querySelector(".add-popup");
 const imagePopup = document.querySelector(".image-popup");
-const profileName = profile.querySelector(".profile__name");
-const profileTitle = profile.querySelector(".profile__title");
-const inputName = form.querySelector(".form__input[name='name']");
-const inputTitle = form.querySelector(".form__input[name='title']");
 
-//----------------Buttons and DOM elements----------------
+//----------------Buttons----------------
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const editCloseButton = editPopup.querySelector(".popup__close-button");
+
 const addPlaceButton = profile.querySelector(".profile__add-button");
 const addCloseButton = addPopup.querySelector(".popup__close-button");
+
 const imageCloseButton = imagePopup.querySelector(".popup__close-button");
 
-const inputPlace = form.querySelector(".form__input[name='place-title']");
-const inputURL = form.querySelector(".form__input[name='image-URL']");
+//----------------Inputs----------------
+const profileName = profile.querySelector(".profile__name");
+const profileTitle = profile.querySelector(".profile__title");
 
-//----------------Wrappers----------------
+const inputName = editPopup.querySelector(".form__input[name='name']");
+const inputTitle = editPopup.querySelector(".form__input[name='title']");
+
+const inputPlace = addPopup.querySelector(".form__input[name='place-title']");
+const inputURL = addPopup.querySelector(".form__input[name='image-URL']");
+
+const popupURL = imagePopup.querySelector(".popup__image");
+const popupCaption = imagePopup.querySelector(".popup__caption");
 
 const placesList = document.querySelector(".places__list");
-
 
 //----------------Functions----------------
 function togglePopupWindow(modalWindow) {
@@ -61,43 +65,49 @@ function togglePopupWindow(modalWindow) {
   modalWindow.classList.toggle("popup__active");
 }
 
-function formHandler(event) {
+
+function createPlaceElement(card) {
+  const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
+  const placeElement = placeTemplate.cloneNode(true);
+  
+  const placeImage = placeElement.querySelector(".place__image");
+  const placeTitle = placeElement.querySelector(".place__title");
+  const placeLike = placeElement.querySelector(".place__like-button");
+  const placeDelete = placeElement.querySelector(".place__delete_button");
+  
+  placeImage.src = card.link;
+  placeTitle.textContent = card.name;
+  
+  placeDelete.addEventListener("click", () => placeElement.remove());
+  
+  placeLike.addEventListener("click", () => placeLike.classList.toggle("place__like-button_active"));
+
+  placeImage.addEventListener("click", () => {
+    togglePopupWindow(imagePopup);
+    popupURL.src = card.link;
+    popupCaption.textContent = card.name;
+  });
+  
+  return placeElement;
+}
+
+function editFormHandler(event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileTitle.textContent = inputTitle.value;
   togglePopupWindow(editPopup);
 }
 
-function createPlaceElement(card) {
-  const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
-  const placeElement = placeTemplate.cloneNode(true);
-
-  const placeImage = placeElement.querySelector(".place__image");
-  const placeTitle = placeElement.querySelector(".place__title");
-  const placeLike = placeElement.querySelector(".place__like-button");
-
-  placeImage.src = card.link;
-  placeTitle.textContent = card.name;
-
-  placeImage.addEventListener("click", () => imagePreview(card));
-
-  placeLike.addEventListener("click", () => likeClick(card));
-  
-  return placeElement;
+function addPlaceHandler(event) {
+  event.preventDefault();
+  placesList.prepend(createPlaceElement({name: inputPlace.value, link: inputURL.value}));
+  addPopup.querySelector(".form").reset();
+  togglePopupWindow(addPopup);
 }
 
 function renderCard(card, wrapper) {
   wrapper.append(createPlaceElement(card));
 }
-
-function likeClick(card) {
-  // card.classList.add(".place__like-button_active");
-  card.content.placeLike.classList.toggle(".place__like-button_active");
-}
-
-// const imagePreview = card => {
-//   togglePopupWindow(card);
-// };
 
 initialCards.forEach(card => renderCard(card, placesList));
 
@@ -112,4 +122,6 @@ addCloseButton.addEventListener("click", () => togglePopupWindow(addPopup));
 
 imageCloseButton.addEventListener("click", () => togglePopupWindow(imagePopup));
 
-form.addEventListener("submit", formHandler);
+editPopup.addEventListener("submit", editFormHandler);
+
+addPopup.addEventListener("submit", addPlaceHandler);

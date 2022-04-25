@@ -36,7 +36,7 @@
         </footer>
     <div class="popup edit-popup">
       <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>
+        <button class="popup__close-button popup__close-button_type_form" type="button"></button>
         <h2 class="popup__title">Edit profile</h2>
         <form class="form" name="edit-form" >
           <fieldset class="form__fieldset">
@@ -51,7 +51,7 @@
     </div>
     <div class="popup add-popup">
       <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>
+        <button class="popup__close-button popup__close-button_type_form" type="button"></button>
         <h2 class="popup__title">New Place</h2>
         <form class="form" name="add-form" >
           <fieldset class="form__fieldset">
@@ -59,20 +59,22 @@
             <input type="url" name="image-URL" placeholder="Image URL" class="form__input" required/>
           </fieldset>
           <fieldset class="form__fieldset">
-            <button class="form__button" type="submit">Save</button>
+            <button class="form__button" type="submit">Create</button>
           </fieldset>
         </form>
       </div>
     </div>
     <div class="popup image-popup">
-      <div class="popup__container">
-        <button class="popup__close-button" type="button"></button>
-        <img class="popup__image"></img>
-      </div>
+      <figure class="popup__container_type_image">
+          <button class="popup__close-button" type="button"></button>
+          <img class="popup__image" alt="preview ofplace photo"></img>
+          <figcaption class="popup__caption"></figcaption>
+        </figure>
     </div>
     <template id="place-template">
       <li class="place">
-        <img class="place__image"></img>
+        <img class="place__image" alt="place photo"></img>
+        <img class="place__delete_button" src="./images/icons/delete_icon.svg" alt="delete place button"></img>
         <div class="place__title-area">
           <h2 class="place__title"></h2>
           <button class="place__like-button" type="button"></button>
