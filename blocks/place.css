@@ -11,6 +11,7 @@
     min-height: 285px;
     object-fit: cover;
     max-height: 282px;
+    cursor: pointer;
 }
   
 .place__title-area {
