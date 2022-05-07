@@ -136,3 +136,7 @@ imageCloseButton.addEventListener("click", () => closePopupWindow(imagePopup));
 editProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 
 addCardPopup.addEventListener("submit", handlePlaceFormSubmit);
+
+document.addEventListener("keydown", (evt) => {
+  if(evt.key == "Escape") closePopupWindow(imagePopup)
+});

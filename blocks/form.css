@@ -41,6 +41,10 @@
     opacity: 0.8;
 }
 
+.form__button_disabled {
+    background-color: #FFF;
+}
+
 @media screen and (max-width: 620px) {
     .form {
       width: 100%;
