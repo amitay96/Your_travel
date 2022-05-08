@@ -61,12 +61,24 @@ const placeTemplate = document.querySelector("#place-template").content.querySel
 //----------------Functions----------------
 function openPopupWindow(modalWindow) {
   modalWindow.classList.add("popup__active");
+  resetForm(modalWindow);
+  document.addEventListener("keydown", evt => handleKeyDown(evt, modalWindow));
+  modalWindow.classList.querySelector(".popup").addEventListener("click", closePopupWindow(modalWindow));
+}
+
+function handleKeyDown(evt, popup) {
+  if(evt.key == "Escape") {
+    closePopupWindow(popup);
+  }
+}
+
+function resetForm(modalWindow) {
   closeInputErrors(modalWindow);
-  modalWindow.addEventListener("keydown", evt => handleKeyDown(evt));
 }
 
 function closePopupWindow(modalWindow) {
   modalWindow.classList.remove("popup__active");
+  
 }
 
 function closeInputErrors(modalWindow) {
@@ -103,13 +115,13 @@ function createPlaceElement(card) {
 function openEditProfile(editForm) {
   newNameInput.value = profileName.textContent;
   newTitleInput.value = profileTitle.textContent;
-  // toggleButton(Array.from(editForm.querySelectorAll(".form__input")), editForm.querySelector(".form__button"));
   openPopupWindow(editForm);
-  console.log(Array.from(editForm.querySelectorAll(".form__input")));
 }
 
-function handleKeyDown(popup) {
-  if(popup.key == "Escape") closePopupWindow(popup);
+function openAddPlacePopup(cardPopup) {
+  openPopupWindow(cardPopup);
+  cardPopup.querySelector(".form").reset();
+  disableButton(cardPopup.querySelector(".form__button"));
 }
 
 function handleProfileFormSubmit(event) {
@@ -140,12 +152,10 @@ initialCards.forEach(card => renderCard(card, placesList));
 //----------------Event handlers----------------
 editProfileButton.addEventListener("click", () => openEditProfile(editProfilePopup));
 
-addPlaceButton.addEventListener("click", () => openPopupWindow(addCardPopup));
+addPlaceButton.addEventListener("click", () => openAddPlacePopup(addCardPopup));
 
-editProfileCloseButton.addEventListener("click", () => {
-  closePopupWindow(editProfilePopup);
-  console.log(editProfilePopup.querySelectorAll(".form__input"));
-});
+editProfileCloseButton.addEventListener("click", () => closePopupWindow(editProfilePopup));
+
 addPlaceCloseButton.addEventListener("click", () => closePopupWindow(addCardPopup));
 
 imageCloseButton.addEventListener("click", () => closePopupWindow(imagePopup));

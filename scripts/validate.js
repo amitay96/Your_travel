@@ -46,14 +46,10 @@ const enableValidation = (settings) => {
     const formList = Array.from(document.querySelectorAll(settings.formSelector));
     
     formList.forEach(formElement => {
-        formElement.addEventListener("submit", (evt) => {
-            evt.preventDefault();
-            
-        });
+        formElement.addEventListener("submit", (evt) => evt.preventDefault());
         
         const inputs = Array.from(formElement.querySelectorAll(settings.inputSelector));
         const button = formElement.querySelector(".form__button");
-        // toggleButton(inputs, button);
 
         inputs.forEach(inputElement => {
             inputElement.addEventListener("input", () => {
