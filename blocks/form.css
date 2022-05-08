@@ -11,7 +11,6 @@
 .form__fieldset {
     display: flex;
     flex-direction: column;
-    gap: 30px;
     border: none;
     padding: 0;
     margin: 0;
@@ -22,6 +21,28 @@
     border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
     height: 27px;
     padding: 0;
+    margin-bottom: 30px;
+}
+
+.form__input:last-of-type {
+    margin-bottom: 0;
+}
+
+.form__input_type_error {
+    border-bottom: rgba(255, 0, 0, 0.2) 1px solid;
+    margin-bottom: 5px;
+}
+
+
+.form__input_error_visible {
+    font-size: 12px;
+    line-height: 1;
+    color: #FF0000;
+    margin-bottom: 13px;
+}
+
+.form__input_error_visible:last-of-type {
+    margin: 5px 0 0;
 }
 
 .form__button {
@@ -42,9 +63,12 @@
 }
 
 .form__button_disabled {
-    background-color: #FFF;
+    opacity: 0.2;
+    cursor: auto;
 }
-
+.form__button_disabled:hover {
+    opacity: 0.2;
+}
 @media screen and (max-width: 620px) {
     .form {
       width: 100%;

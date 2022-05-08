@@ -58,7 +58,9 @@
         <form class="form" name="add-form" >
           <fieldset class="form__fieldset">
             <input id="place-name" type="text" name="place-title" placeholder="Title" class="form__input" minlength="1" maxlength="30" required/>
+            <span id="place-name-error"></span>
             <input id="place-url" type="url" name="image-URL" placeholder="Image URL" class="form__input" required/>
+            <span id="place-url-error"></span>
           </fieldset>
           <fieldset class="form__fieldset">
             <button class="form__button" type="submit">Create</button>
@@ -83,7 +85,7 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/script.js"></script>
     <script src="./scripts/validate.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

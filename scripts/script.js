@@ -95,7 +95,9 @@ function createPlaceElement(card) {
 function openEditProfile(editForm) {
   newNameInput.value = profileName.textContent;
   newTitleInput.value = profileTitle.textContent;
+  toggleButton(Array.from(editForm.querySelectorAll(".form__input")), editForm.querySelector(".form__button"));
   openPopupWindow(editForm);
+  console.log(Array.from(editForm.querySelectorAll(".form__input")));
 }
 
 function handleProfileFormSubmit(event) {
@@ -127,8 +129,10 @@ editProfileButton.addEventListener("click", () => openEditProfile(editProfilePop
 
 addPlaceButton.addEventListener("click", () => openPopupWindow(addCardPopup));
 
-editProfileCloseButton.addEventListener("click", () => closePopupWindow(editProfilePopup));
-
+editProfileCloseButton.addEventListener("click", () => {
+  closePopupWindow(editProfilePopup);
+  hideInputError(editProfilePopup.querySelectorAll(".form__input"));
+  });
 addPlaceCloseButton.addEventListener("click", () => closePopupWindow(addCardPopup));
 
 imageCloseButton.addEventListener("click", () => closePopupWindow(imagePopup));
@@ -138,5 +142,5 @@ editProfilePopup.addEventListener("submit", handleProfileFormSubmit);
 addCardPopup.addEventListener("submit", handlePlaceFormSubmit);
 
 document.addEventListener("keydown", (evt) => {
-  if(evt.key == "Escape") closePopupWindow(imagePopup)
+  if(evt.key == "Escape") closePopupWindow(document.querySelector(".popup__active"));
 });
