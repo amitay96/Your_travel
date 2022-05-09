@@ -60,67 +60,46 @@ const placeTemplate = document.querySelector("#place-template").content.querySel
 //----------------Functions----------------
 function openPopupWindow(modalWindow) {
   modalWindow.classList.add("popup__active");
-  document.addEventListener("keydown", evt => handleKeyDown(evt, modalWindow));
-  modalWindow.addEventListener("click", (evt) => handleOverlayClick(evt, modalWindow));
-}
-
-function handleOverlayClick(evt, modalWindow) {
-  if(evt.target == modalWindow) closePopupWindow(modalWindow);
-}
-
-function handleKeyDown(evt, popup) {
-  if(evt.key == "Escape") {
-    closePopupWindow(popup);
-  }
+  document.addEventListener("keydown", evt => handleKeyDown(evt));
+  modalWindow.addEventListener("mousedown", (evt) => handleOverlayClick(evt));
 }
 
 function closePopupWindow(modalWindow) {
   modalWindow.classList.remove("popup__active");
-  closeInputErrors(modalWindow);
-}
-
-function closeInputErrors(modalWindow) {
-  const toClose = modalWindow.querySelectorAll(".form__input");
-  toClose.forEach(input => hideInputError(input, validationSettings));
-}
-
-function createPlaceElement(card) {
-  const placeElement = placeTemplate.cloneNode(true);
-  
-  const placeImage = placeElement.querySelector(".place__image");
-  const placeTitle = placeElement.querySelector(".place__title");
-  const placeLike = placeElement.querySelector(".place__like-button");
-  const placeDelete = placeElement.querySelector(".place__delete_button");
-  
-  placeImage.src = card.link;
-  placeImage.alt = "some place in the US";
-  placeTitle.textContent = card.name;
-  
-  placeDelete.addEventListener("click", () => placeElement.remove());
-  
-  placeLike.addEventListener("click", () => toggleLike(placeLike));
-  
-  placeImage.addEventListener("click", () => {
-    openPopupWindow(imagePopup);
-    popupImageURL.src = card.link;
-    popupImageURL.alt = "some place in the US";
-    popupImageCaption.textContent = card.name;
-  });
-  
-  return placeElement;
+  document.removeEventListener("keydown", evt => handleKeyDown(evt));
+  modalWindow.removeEventListener("mousedown", (evt) => handleOverlayClick(evt));
 }
 
 function openEditProfile(editForm) {
-  newNameInput.value = profileName.textContent;
-  newTitleInput.value = profileTitle.textContent;
-  enableButton(editForm.querySelector(".form__button"), validationSettings);
+  const formButton = editForm.querySelector(".form__button");
+  fillProfileForm(editForm);
+  enableButton(formButton, validationSettings);
+  clearFormErrors(editForm.querySelector(".form"));
   openPopupWindow(editForm);
 }
 
+function fillProfileForm(editForm) {
+  newNameInput.value = profileName.textContent;
+  newTitleInput.value = profileTitle.textContent;
+}
+
 function openAddPlacePopup(cardPopup) {
-  cardPopup.querySelector(".form").reset();
+  
   openPopupWindow(cardPopup);
-  disableButton(cardPopup.querySelector(".form__button"), validationSettings);
+}
+
+function handleOverlayClick(evt) {
+  if(evt.target === evt.currentTarget) {
+    const popupOpened = document.querySelector(".popup__active");
+    closePopupWindow(popupOpened);
+  }
+}
+
+function handleKeyDown(evt) {
+  if(evt.key == "Escape") {
+    const popupOpened = document.querySelector(".popup__active");
+    closePopupWindow(popupOpened);
+  }
 }
 
 function handleProfileFormSubmit(event) {
@@ -132,13 +111,41 @@ function handleProfileFormSubmit(event) {
 
 function handlePlaceFormSubmit(event) {
   event.preventDefault();
+  const formButton = addCardPopup.querySelector(".form__button");
   placesList.prepend(createPlaceElement({name: newPlaceNameInput.value, link: newPlaceURLInput.value}));
   addCardPopup.querySelector(".form").reset();
+  disableButton(formButton, validationSettings);
   closePopupWindow(addCardPopup);
 }
 
 function toggleLike(card) {
   card.classList.toggle("place__like-button_active");
+}
+
+function createPlaceElement(card) {
+  const placeElement = placeTemplate.cloneNode(true);
+  
+  const placeImage = placeElement.querySelector(".place__image");
+  const placeTitle = placeElement.querySelector(".place__title");
+  const placeLike = placeElement.querySelector(".place__like-button");
+  const placeDelete = placeElement.querySelector(".place__delete_button");
+  
+  placeImage.src = card.link;
+  placeImage.alt = `Photo of ${card.name}`;
+  placeTitle.textContent = card.name;
+  
+  placeDelete.addEventListener("click", () => placeElement.remove());
+  
+  placeLike.addEventListener("click", () => toggleLike(placeLike));
+  
+  placeImage.addEventListener("click", () => {
+    openPopupWindow(imagePopup);
+    popupImageURL.src = card.link;
+    popupImageURL.alt = `Photo of ${card.name}`;
+    popupImageCaption.textContent = card.name;
+  });
+  
+  return placeElement;
 }
 
 function renderCard(card, wrapper) {

@@ -23,6 +23,11 @@ const hideInputError = (inputElement, settings) => {
     errorElement.classList.remove(errorClass);
 };
 
+const clearFormErrors = (formElement) => {
+    const inputsList = [...formElement.querySelectorAll(".form__input")];
+    inputsList.forEach(input => hideInputError(input, validationSettings));
+  }
+
 const enableButton = (button, settings) => {
     const {inactiveButtonClass} = settings;
     button.disabled = false;
@@ -36,7 +41,9 @@ const disableButton = (button, settings) => {
 }
 
 const toggleButton = (inputs, button, settings) => {
-    if(hasInvalidInput(inputs)) enableButton(button, settings); 
+    if(hasInvalidInput(inputs)) {
+        enableButton(button, settings); 
+    }
     else 
         disableButton(button, settings);
 };
@@ -52,7 +59,7 @@ const checkInputValidity = (inputElement, settings) => {
 };
 
 const hasInvalidInput = (inputList) => {
-        return inputList.every((inputElement) => inputElement.validity.valid === true);
+        return inputList.every((inputElement) => inputElement.validity.valid);
 };
 
 const enableValidation = (settings) => {
