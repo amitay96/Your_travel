@@ -21,10 +21,8 @@ This is a project that represents a profile managment of one traveler and the pl
 - Custom forms
 - CSS Adaptive layout
 - JavaScript application
+- Form Validation
 
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile)  
   
 **GitHub Pages**  
   

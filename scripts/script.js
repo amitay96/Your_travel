@@ -31,7 +31,7 @@ const profile = document.querySelector(".profile");
 const editProfilePopup = document.querySelector(".edit-popup");
 const addCardPopup = document.querySelector(".add-popup");
 const imagePopup = document.querySelector(".image-popup");
-
+const popups = document.querySelectorAll(".popup");
 //----------------Buttons----------------
 const editProfileButton = profile.querySelector(".profile__edit-button");
 const editProfileCloseButton = editProfilePopup.querySelector(".popup__close-button");
@@ -57,23 +57,22 @@ const popupImageCaption = imagePopup.querySelector(".popup__caption");
 const placesList = document.querySelector(".places__list");
 const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
 
-// const openedPopup = document.querySelector(".popup__active");
 //----------------Functions----------------
 function openPopupWindow(modalWindow) {
   modalWindow.classList.add("popup__active");
-  resetForm(modalWindow);
+  closeInputErrors(modalWindow);
   document.addEventListener("keydown", evt => handleKeyDown(evt, modalWindow));
-  modalWindow.classList.querySelector(".popup").addEventListener("click", closePopupWindow(modalWindow));
+  modalWindow.addEventListener("click", (evt) => handleOverlayClick(evt, modalWindow));
+}
+
+function handleOverlayClick(evt, modalWindow) {
+  if(evt.target == modalWindow) closePopupWindow(modalWindow);
 }
 
 function handleKeyDown(evt, popup) {
   if(evt.key == "Escape") {
     closePopupWindow(popup);
   }
-}
-
-function resetForm(modalWindow) {
-  closeInputErrors(modalWindow);
 }
 
 function closePopupWindow(modalWindow) {
@@ -115,12 +114,13 @@ function createPlaceElement(card) {
 function openEditProfile(editForm) {
   newNameInput.value = profileName.textContent;
   newTitleInput.value = profileTitle.textContent;
+  toggleButton([...editForm.querySelectorAll(".form__input")], editForm.querySelector(".form__button"));
   openPopupWindow(editForm);
 }
 
 function openAddPlacePopup(cardPopup) {
-  openPopupWindow(cardPopup);
   cardPopup.querySelector(".form").reset();
+  openPopupWindow(cardPopup);
   disableButton(cardPopup.querySelector(".form__button"));
 }
 
