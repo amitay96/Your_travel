@@ -60,7 +60,6 @@ const placeTemplate = document.querySelector("#place-template").content.querySel
 //----------------Functions----------------
 function openPopupWindow(modalWindow) {
   modalWindow.classList.add("popup__active");
-  closeInputErrors(modalWindow);
   document.addEventListener("keydown", evt => handleKeyDown(evt, modalWindow));
   modalWindow.addEventListener("click", (evt) => handleOverlayClick(evt, modalWindow));
 }
@@ -77,12 +76,12 @@ function handleKeyDown(evt, popup) {
 
 function closePopupWindow(modalWindow) {
   modalWindow.classList.remove("popup__active");
-  
+  closeInputErrors(modalWindow);
 }
 
 function closeInputErrors(modalWindow) {
   const toClose = modalWindow.querySelectorAll(".form__input");
-  toClose.forEach(input => hideInputError(input));
+  toClose.forEach(input => hideInputError(input, validationSettings));
 }
 
 function createPlaceElement(card) {
@@ -114,14 +113,14 @@ function createPlaceElement(card) {
 function openEditProfile(editForm) {
   newNameInput.value = profileName.textContent;
   newTitleInput.value = profileTitle.textContent;
-  toggleButton([...editForm.querySelectorAll(".form__input")], editForm.querySelector(".form__button"));
+  enableButton(editForm.querySelector(".form__button"), validationSettings);
   openPopupWindow(editForm);
 }
 
 function openAddPlacePopup(cardPopup) {
   cardPopup.querySelector(".form").reset();
   openPopupWindow(cardPopup);
-  disableButton(cardPopup.querySelector(".form__button"));
+  disableButton(cardPopup.querySelector(".form__button"), validationSettings);
 }
 
 function handleProfileFormSubmit(event) {

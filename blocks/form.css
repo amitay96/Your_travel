@@ -33,7 +33,6 @@
     margin-bottom: 5px;
 }
 
-
 .form__input_error_visible {
     font-size: 12px;
     line-height: 1;
@@ -66,9 +65,12 @@
     opacity: 0.2;
     cursor: auto;
 }
+
 .form__button_disabled:hover {
     opacity: 0.2;
 }
+
+
 @media screen and (max-width: 620px) {
     .form {
       width: 100%;
