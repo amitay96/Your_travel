@@ -66,7 +66,7 @@ function openPopupWindow(modalWindow) {
 
 function closePopupWindow(modalWindow) {
   modalWindow.classList.remove("popup__active");
-  document.removeEventListener("keydown", evt => handleKeyDown);
+  document.removeEventListener("keydown", handleKeyDown);
   modalWindow.removeEventListener("mousedown", handleOverlayClick);
 }
 
