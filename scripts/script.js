@@ -60,32 +60,39 @@ const placeTemplate = document.querySelector("#place-template").content.querySel
 //----------------Functions----------------
 function openPopupWindow(modalWindow) {
   modalWindow.classList.add("popup__active");
-  document.addEventListener("keydown", evt => handleKeyDown(evt));
-  modalWindow.addEventListener("mousedown", (evt) => handleOverlayClick(evt));
+  document.addEventListener("keydown", handleKeyDown);
+  modalWindow.addEventListener("mousedown", handleOverlayClick);
 }
 
 function closePopupWindow(modalWindow) {
   modalWindow.classList.remove("popup__active");
-  document.removeEventListener("keydown", evt => handleKeyDown(evt));
-  modalWindow.removeEventListener("mousedown", (evt) => handleOverlayClick(evt));
+  document.removeEventListener("keydown", evt => handleKeyDown);
+  modalWindow.removeEventListener("mousedown", handleOverlayClick);
 }
 
 function openEditProfile(editForm) {
   const formButton = editForm.querySelector(".form__button");
-  fillProfileForm(editForm);
+  fillProfileForm();
   enableButton(formButton, validationSettings);
   clearFormErrors(editForm.querySelector(".form"));
   openPopupWindow(editForm);
 }
 
-function fillProfileForm(editForm) {
+function fillProfileForm() {
   newNameInput.value = profileName.textContent;
   newTitleInput.value = profileTitle.textContent;
 }
 
 function openAddPlacePopup(cardPopup) {
-  
+  clearPlaceFormErrors(cardPopup);
   openPopupWindow(cardPopup);
+}
+
+function clearPlaceFormErrors(cardPopup) {
+  const inputsList = [...cardPopup.querySelectorAll(".form__input")];
+  if(inputsList.every((input) => input.value === "")) {
+    clearFormErrors(cardPopup.querySelector(".form"));
+  }
 }
 
 function handleOverlayClick(evt) {
