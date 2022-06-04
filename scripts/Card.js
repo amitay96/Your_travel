@@ -1,4 +1,4 @@
-// import {card as data} from "./script.js";
+import * as all from "./script.js";
 
 export default class Card {
     constructor(data, cardSelector) {
@@ -14,12 +14,12 @@ export default class Card {
 
     generateCard() {
         this._element = this._getTemplate();
-        const placeImage = this._element.querySelector(".place__image");
-        const placeTitle = this._element.querySelector(".place__title");
+        this._placeImage = this._element.querySelector(".place__image");
+        this._placeTitle = this._element.querySelector(".place__title");
         
-        placeImage.src = this._link;
-        placeImage.alt = `Photo of ${this._name}`;
-        placeTitle.textContent = this._name;
+        this._placeImage.src = this._link;
+        this._placeImage.alt = `Photo of ${this._name}`;
+        this._placeTitle.textContent = this._name;
 
         this._cardEventListeners();
 
@@ -33,12 +33,12 @@ export default class Card {
         placeLike.addEventListener("click", () => this._toggleCardLike(placeLike));
         placeDelete.addEventListener("click", () => this._element.remove());
 
-        // placeImage.addEventListener("click", () => {
-        //     openPopupWindow(imagePopup);
-        //     popupImageURL.src = card.link;
-        //     popupImageURL.alt = `Photo of ${card.name}`;
-        //     popupImageCaption.textContent = card.name;
-        // });
+        this._placeImage.addEventListener("click", () => {
+            all.openPopupWindow(all.imagePopup);
+            all.popupImageURL.src = this._link;
+            all.popupImageCaption.alt = `Photo of ${this._name}`;
+            all.popupImageCaption.textContent = this._name;
+        });
     }
 
     _toggleCardLike() {
