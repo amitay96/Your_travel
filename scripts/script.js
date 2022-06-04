@@ -1,3 +1,6 @@
+//----------------Imports----------------
+import Card from "./card.js";
+//----------------Data----------------
 const initialCards = [
   {
     name: "Antelope Canyon",
@@ -55,7 +58,7 @@ const popupImageURL = imagePopup.querySelector(".popup__image");
 const popupImageCaption = imagePopup.querySelector(".popup__caption");
 
 const placesList = document.querySelector(".places__list");
-const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
+export const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
 
 //----------------Functions----------------
 function openPopupWindow(modalWindow) {
@@ -125,42 +128,11 @@ function handlePlaceFormSubmit(event) {
   closePopupWindow(addCardPopup);
 }
 
-function toggleLike(card) {
-  card.classList.toggle("place__like-button_active");
-}
-
-function createPlaceElement(card) {
-  const placeElement = placeTemplate.cloneNode(true);
-  
-  const placeImage = placeElement.querySelector(".place__image");
-  const placeTitle = placeElement.querySelector(".place__title");
-  const placeLike = placeElement.querySelector(".place__like-button");
-  const placeDelete = placeElement.querySelector(".place__delete_button");
-  
-  placeImage.src = card.link;
-  placeImage.alt = `Photo of ${card.name}`;
-  placeTitle.textContent = card.name;
-  
-  placeDelete.addEventListener("click", () => placeElement.remove());
-  
-  placeLike.addEventListener("click", () => toggleLike(placeLike));
-  
-  placeImage.addEventListener("click", () => {
-    openPopupWindow(imagePopup);
-    popupImageURL.src = card.link;
-    popupImageURL.alt = `Photo of ${card.name}`;
-    popupImageCaption.textContent = card.name;
-  });
-  
-  return placeElement;
-}
-
-function renderCard(card, wrapper) {
-  wrapper.append(createPlaceElement(card));
-}
-
-initialCards.forEach(card => renderCard(card, placesList));
-
+initialCards.forEach(card => {
+  const place = new Card(card, "#place-template");
+  const cardElement = place.generateCard();
+  placesList.append(cardElement);
+});
 
 //----------------Event handlers----------------
 editProfileButton.addEventListener("click", () => openEditProfile(editProfilePopup));
