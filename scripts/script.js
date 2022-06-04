@@ -2,6 +2,7 @@
 import Card from "./Card.js";
 import { openPopupWindow, closePopupWindow, handleOverlayClick, handleKeyDown } from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
+
 //----------------Data----------------
 const initialCards = [
   {
@@ -76,6 +77,7 @@ const addPlaceFormValidator = new FormValidator(validationSettings, addCardPopup
 //----------------Functions----------------
 
 profileFormValidator.enableValidation();
+addPlaceFormValidator.enableValidation();
 
 function openEditProfile(editForm) {
   profileFormValidator.resetValidation();
@@ -96,24 +98,23 @@ function handleProfileFormSubmit(event) {
 }
 
 function openAddPlacePopup(cardPopup) {
-  addPlaceFormValidator.enableValidation();
   openPopupWindow(cardPopup);
 }
 
 function handlePlaceFormSubmit(event) {
   event.preventDefault();
-  const formButton = addCardPopup.querySelector(".form__button");
-  const newCard = new Card({name: newPlaceNameInput.value, link: newPlaceURLInput.value}, ".place");
-  placesList.prepend(newCard);
+  renderCard({name: newPlaceNameInput.value, link: newPlaceURLInput.value}, placesList);
   addCardPopup.querySelector(".form").reset();
+  addPlaceFormValidator.resetValidation();
   closePopupWindow(addCardPopup);
 }
 
-initialCards.forEach(card => {
-  const place = new Card(card, "#place-template");
-  const cardElement = place.generateCard();
-  placesList.append(cardElement);
-});
+function renderCard(card, placesList) {
+  const newCard = new Card(card, "#place-template").generateCard();
+  placesList.prepend(newCard);
+}
+
+initialCards.forEach(card => renderCard(card, placesList));
 
 //----------------Event handlers----------------
 editProfileButton.addEventListener("click", () => openEditProfile(editProfilePopup));

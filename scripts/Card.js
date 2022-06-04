@@ -1,4 +1,6 @@
-import * as all from "./script.js";
+import { imagePopup, popupImageURL, popupImageCaption} from "./script.js";
+import { openPopupWindow} from "./utils.js";
+
 
 export default class Card {
     constructor(data, cardSelector) {
@@ -15,34 +17,35 @@ export default class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._placeImage = this._element.querySelector(".place__image");
-        this._placeTitle = this._element.querySelector(".place__title");
+        const placeTitle = this._element.querySelector(".place__title");
         
         this._placeImage.src = this._link;
         this._placeImage.alt = `Photo of ${this._name}`;
-        this._placeTitle.textContent = this._name;
+        placeTitle.textContent = this._name;
 
-        this._cardEventListeners();
+        this._setEventListeners();
 
         return this._element;
     }
     
-    _cardEventListeners() {
+    _setEventListeners() {
         const placeLike = this._element.querySelector(".place__like-button");
         const placeDelete = this._element.querySelector(".place__delete_button");
 
-        placeLike.addEventListener("click", () => this._toggleCardLike(placeLike));
-        placeDelete.addEventListener("click", () => this._element.remove());
+        placeLike.addEventListener("click", this._toggleCardLike);
+        placeDelete.addEventListener("click", () => this._element.remove());        // "this._element = null;" is not working
 
         this._placeImage.addEventListener("click", () => {
-            all.openPopupWindow(all.imagePopup);
-            all.popupImageURL.src = this._link;
-            all.popupImageCaption.alt = `Photo of ${this._name}`;
-            all.popupImageCaption.textContent = this._name;
+            openPopupWindow(imagePopup);
+            popupImageURL.src = this._link;
+            popupImageCaption.alt = `Photo of ${this._name}`;
+            popupImageCaption.textContent = this._name;
         });
     }
 
-    _toggleCardLike() {
-        this._element.querySelector(".place__like-button").classList.toggle("place__like-button_active");
+    _toggleCardLike = () => {
+        const likeButton = this._element.querySelector(".place__like-button");
+        likeButton.classList.toggle("place__like-button_active");
     }
     
 }
