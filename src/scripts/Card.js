@@ -1,12 +1,12 @@
-import { imagePopup, popupImageURL, popupImageCaption} from "./script.js";
-import { openPopupWindow} from "./utils.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 
 
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -35,12 +35,7 @@ export default class Card {
         placeLike.addEventListener("click", this._toggleCardLike);
         placeDelete.addEventListener("click", () => this._element.remove());        // "this._element = null;" is not working
 
-        this._placeImage.addEventListener("click", () => {
-            openPopupWindow(imagePopup);
-            popupImageURL.src = this._link;
-            popupImageCaption.alt = `Photo of ${this._name}`;
-            popupImageCaption.textContent = this._name;
-        });
+        this._placeImage.addEventListener("click", () => this._handleCardClick());
     }
 
     _toggleCardLike = () => {

@@ -1,5 +1,3 @@
-import { validationSettings as settings } from "./script.js";
-
 export class FormValidator {
     constructor(settings, formToCheck) {
         this._form = formToCheck;
