@@ -49,7 +49,7 @@
 
 .profile__add-button {
     background-color: transparent;
-    background: url("../../images/icons/add_icon.svg") center no-repeat;
+    background: url("../images/icons/add_icon.svg") center no-repeat;
     background-size: 22px 22px;
     padding: calc(12px + (22px / 2)) calc(62px + (22px / 2));
     border: 2px solid #fff;
@@ -65,7 +65,7 @@
   
 .profile__edit-button {
     background-color: transparent;
-    background: url("../../images/icons/edit_icon.svg") center no-repeat;
+    background: url("../images/icons/edit_icon.svg") center no-repeat;
     background-size: 10px 10px;
     width: 24px;
     height: 24px;

@@ -39,7 +39,7 @@
     background-color: transparent;
     border: none;
     padding: 0;
-    background: url("../../images/icons/like_icon.svg") center no-repeat;
+    background: url("../images/icons/like_icon.svg") center no-repeat;
     background-size: cover;
     min-width: 21px;
     min-height: 19px;
@@ -52,7 +52,7 @@
 }
   
 .place__like-button_active {
-    background: url("../../images/icons/like_icon-active.svg");
+    background: url("../images/icons/like_icon-active.svg");
 }
 
 .place__delete_button {

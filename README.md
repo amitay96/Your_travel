@@ -1,26 +1,19 @@
 # Project 4: Around The U.S.
 
 ### Overview  
-* Intro  
-* Figma  
-* Adaptive layout
-* GitHub Pages
-* JavaScript
-* Interactive buttons
-  
-**Intro**    
   
 This is a project that represents a profile managment of one traveler and the places he went with pictures and option to like and add photos.
   
 ## Project features
 
 - Semantic HTML5
-- Flexbox
+- Flexbox and Grid layout
 - Positioning
 - BEM Methodology
-- Custom forms
+- Webpack, Postcss, Babel
 - CSS Adaptive layout
-- JavaScript application
+- JavaScript Classes (ES6)
+- JavaScript DOM manupilation
 - Form Validation
 
   
