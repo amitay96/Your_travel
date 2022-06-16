@@ -1,21 +1,37 @@
 //----------------Imports----------------
 import "./index.css";
+import { initialCards, validationSettings, editProfilePopup, addCardPopup,
+  editProfileButton, addPlaceButton, newNameInput, newTitleInput } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { initialCards, validationSettings, editProfilePopup, addCardPopup,
-  editProfileButton, addPlaceButton, newNameInput, newTitleInput } from "../components/constants.js";
 import {PopupWithImage} from "../components/PopupWithImage.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
 import { UserInfo} from "../components/UserInfo.js";
 
+//----------------Functions----------------
+const generateCard = (data) => {
+  const newCard = new Card(data, "#place-template", () => imagePopup.open(data.link, data.name));
+  const cardElement = newCard.generateCard();
+  return cardElement;
+}
 
+const renderCard = (data) => {
+  const card = generateCard(data);
+  placesSection.addItem(card);
+}
+
+const fillProfileForm = () => {
+  const info = userInfo.getUserInfo();
+  newNameInput.value = info.name;
+  newTitleInput.value = info.job;
+}
 
 //----------------Classes initialization----------------
 const placesSection = new Section(
     {
     items: initialCards,
-    renderer: (data) => renderCard(data) 
+    renderer: renderCard
     },
   ".places__list"
 );
@@ -35,7 +51,6 @@ const userInfo = new UserInfo({
   jobSelector: ".profile__title"
 });
 
-//----------------Functions----------------
 
 placesSection.renderer();
 editPopup.setEventListeners();
@@ -43,24 +58,11 @@ addPopup.setEventListeners();
 profileFormValidator.enableValidation();
 addPlaceFormValidator.enableValidation();
 
-function generateCard(data) {
-  const newCard = new Card(data, "#place-template", () => imagePopup.open(data.link, data.name));
-  const cardElement = newCard.generateCard();
-  return cardElement;
-}
-
-function renderCard(data) {
-  const card = generateCard(data);
-  placesSection.addItem(card);
-}
-
 //----------------Event handlers----------------
 editProfileButton.addEventListener("click", () => {
-  const info = userInfo.getUserInfo();
-  newNameInput.value = info.name;
-  newTitleInput.value = info.job;
   profileFormValidator.resetValidation();
   editPopup.open();
+  fillProfileForm();
 });
 
 addPlaceButton.addEventListener("click", () => {

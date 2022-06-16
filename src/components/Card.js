@@ -33,8 +33,13 @@ export default class Card {
         const placeDelete = this._element.querySelector(".place__delete_button");
 
         placeLike.addEventListener("click", this._toggleCardLike);
-        placeDelete.addEventListener("click", () => this._element.remove());
+        placeDelete.addEventListener("click", () => this._handlePlaceDelete());
         this._placeImage.addEventListener("click", () => this._handleCardClick());
+    }
+
+    _handlePlaceDelete = () => {
+        this._element.remove();
+        this._element = null;
     }
 
     _toggleCardLike = () => {
