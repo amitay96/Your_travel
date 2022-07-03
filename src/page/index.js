@@ -5,9 +5,19 @@ import { initialCards, validationSettings, editProfilePopup, addCardPopup,
 import Card from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { FormValidator } from "../components/FormValidator.js";
-import {PopupWithImage} from "../components/PopupWithImage.js";
-import {PopupWithForm} from "../components/PopupWithForm.js";
-import { UserInfo} from "../components/UserInfo.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+import { api } from "../components/Api.js";
+
+// api.getInitialCards().then(res => {
+//   placesSection.renderer();
+// });
+
+// api.getUserInfo().then(res => {
+//   console.log(res);
+// });
+console.log(api.getInitialCards());
 
 //----------------Functions----------------
 const generateCard = (data) => {
@@ -30,7 +40,7 @@ const fillProfileForm = () => {
 //----------------Classes initialization----------------
 const placesSection = new Section(
     {
-    items: initialCards,
+    items: api.getInitialCards(),
     renderer: renderCard
     },
   ".places__list"
@@ -52,7 +62,7 @@ const userInfo = new UserInfo({
 });
 
 
-placesSection.renderer();
+// placesSection.renderer();
 editPopup.setEventListeners();
 addPopup.setEventListeners();
 profileFormValidator.enableValidation();
