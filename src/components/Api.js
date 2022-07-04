@@ -21,7 +21,7 @@ class Api {
       }).then(this._checkResponse);
     }
 
-    setUserInfo() {
+    setUserInfo(name, about) {
       return fetch(`${this._baseUrl}/users/me`, {
         headers: this._headers,
         method: "PATCH",
@@ -31,6 +31,14 @@ class Api {
         }),
       }).then(this._checkResponse);
     }
+
+    createCard(data) {
+      return fetch(`${this._baseUrl}/cards`, {
+        headers: this._headers,
+        method: "POST",
+        body: JSON.stringify(data)
+    }).then(this._checkResponse);
+   }
   }
   
   export const api = new Api({

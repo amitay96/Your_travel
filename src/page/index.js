@@ -55,10 +55,16 @@ api.getInitialCards().then(res => {
 });
 
 
-const editPopup = new PopupWithForm(".edit-popup", (data) => userInfo.setUserInfo(data.name, data.title));
+const editPopup = new PopupWithForm(".edit-popup", (data) => {
+  api.setUserInfo(data.name, data.title)
+  .then(userInfo.setUserInfo(data.name, data.title));
+});
+  
 const addPopup = new PopupWithForm(".add-popup", (data) => {
-  renderCard(data);
-  addPlaceFormValidator.resetValidation();
+  api.createCard(data).then(res => {
+    renderCard(res);
+    addPlaceFormValidator.resetValidation();
+  }).finally(res => console.log(res))
 });
 const imagePopup = new PopupWithImage(".image-popup");
   
