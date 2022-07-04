@@ -3,22 +3,33 @@ class Api {
       this._baseUrl = baseUrl;
       this._headers = headers;
     }
+
+    _checkResponse(res) {
+      if(res.ok) return res.json();
+      else return Promise.reject(res.statusText);
+    }
   
     getInitialCards() {
       return fetch(`${this._baseUrl}/cards`, {
-        headers: this._headers
-      })
-      .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
-      .catch(res => console.log(res));
-      
+        headers: this._headers,
+      }).then(this._checkResponse);
     }
   
     getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers
-          })
-          .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
-          .catch(res => console.log(res));
+      return fetch(`${this._baseUrl}/users/me`, {
+        headers: this._headers
+      }).then(this._checkResponse);
+    }
+
+    setUserInfo() {
+      return fetch(`${this._baseUrl}/users/me`, {
+        headers: this._headers,
+        method: "PATCH",
+        body: JSON.stringify({
+          name: name,
+          about: about,
+        }),
+      }).then(this._checkResponse);
     }
   }
   

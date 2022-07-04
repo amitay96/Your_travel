@@ -9,10 +9,19 @@
     padding: 0;
 }
 
-.profile__image {
+.profile__image-container {
     border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+}
+
+.profile__image {
     max-width: 120px;
     max-height: 120px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
   
 .profile__info {
