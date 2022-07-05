@@ -39,7 +39,23 @@ class Api {
         body: JSON.stringify(data)
     }).then(this._checkResponse);
    }
+
+   deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      headers: this._headers,
+      method: "DELETE"
+   }).then(this._checkResponse);
   }
+
+  toggleLike(cardId, isLiked) {
+    let method;
+    isLiked ? (method = "DELETE") : (method = "PUT")
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      headers: this._headers,
+      method: method
+   }).then(this._checkResponse);
+  }
+}
   
   export const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
