@@ -1,7 +1,7 @@
 //----------------Imports----------------
 import "./index.css";
 import { validationSettings, editProfilePopup, addCardPopup,
-  editProfileButton, addPlaceButton, newNameInput, newTitleInput } from "../utils/constants.js";
+  editProfileButton, addPlaceButton, newNameInput, newTitleInput, avatar, avatarEditPopup } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -89,32 +89,40 @@ const placesSection = new Section(
   },
   ".places__list"
 );
-
+//----------------Popups----------------
 const deletePopup = new PopupWithSubmit(".delete-popup");
 
-const editPopup = new PopupWithForm(".edit-popup", (data) => {
-  api.setUserInfo(data.name, data.title)
-  .then(userInfo.setUserInfo(data.name, data.title));
+const avatarPopup = new PopupWithForm(".avatar-popup", (data) => {
+  console.log(data);
+api.setUserAvatar(data.avatar)
+.then(userInfo.setUserImage(data.avatar));
 });
-  
+
+const imagePopup = new PopupWithImage(".image-popup");
+
 const addPopup = new PopupWithForm(".add-popup", (data) => {
   api.createCard(data).then(res => {
     renderCard(res);
     addPlaceFormValidator.resetValidation();
   })
 });
-const imagePopup = new PopupWithImage(".image-popup");
+
+const editPopup = new PopupWithForm(".edit-popup", (data) => {
+  api.setUserInfo(data.name, data.title)
+  .then(userInfo.setUserInfo(data.name, data.title));
+});
   
 const profileFormValidator = new FormValidator(validationSettings, editProfilePopup);
 const addPlaceFormValidator = new FormValidator(validationSettings, addCardPopup);
-  
-  
+const avatarFormValidator = new FormValidator(validationSettings, avatarEditPopup);
+
   
 editPopup.setEventListeners();
 addPopup.setEventListeners();
 deletePopup.setEventListeners();
 profileFormValidator.enableValidation();
 addPlaceFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 //----------------Event handlers----------------
 editProfileButton.addEventListener("click", () => {
@@ -126,4 +134,9 @@ editProfileButton.addEventListener("click", () => {
 addPlaceButton.addEventListener("click", () => {
   addPlaceFormValidator.resetValidation();
   addPopup.open();
+});
+
+avatar.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
+  avatarPopup.open();
 });

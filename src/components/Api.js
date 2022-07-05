@@ -32,6 +32,16 @@ class Api {
       }).then(this._checkResponse);
     }
 
+    setUserAvatar(avatar) {
+      return fetch(`${this._baseUrl}/users/me/avatar`, {
+        headers: this._headers,
+        method: "PATCH",
+        body: JSON.stringify({
+          avatar: avatar
+        }),
+      }).then(this._checkResponse);
+    }
+
     createCard(data) {
       return fetch(`${this._baseUrl}/cards`, {
         headers: this._headers,

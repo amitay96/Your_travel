@@ -38,10 +38,13 @@ const validationSettings = {
 //----------------Modals----------------
 const editProfilePopup = document.querySelector(".edit-popup");
 const addCardPopup = document.querySelector(".add-popup");
+const avatarEditPopup = document.querySelector(".avatar-popup");
 
 //----------------Buttons----------------
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addPlaceButton = document.querySelector(".profile__add-button");
+const avatar = document.querySelector(".profile__image-container");
+
 
 //----------------Inputs----------------
 const newNameInput = editProfilePopup.querySelector(".form__input[name='name']");
@@ -49,5 +52,5 @@ const newTitleInput = editProfilePopup.querySelector(".form__input[name='title']
 
 export {
   initialCards, validationSettings, editProfilePopup, addCardPopup,
-  editProfileButton, addPlaceButton, newNameInput, newTitleInput
+  editProfileButton, addPlaceButton, newNameInput, newTitleInput, avatar, avatarEditPopup
 };
