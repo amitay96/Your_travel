@@ -1,6 +1,8 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popupElement = document.querySelector(popupSelector);
+        this._submitButton = document.querySelector(".form__button");
+        this._submitButtonText = this._submitButton.textContent;
     }
 
     open() {
@@ -24,6 +26,14 @@ export default class Popup {
     _handleOverlayClick = (evt) => {
         if(evt.target === evt.currentTarget) {
             this.close();
+        }
+    }
+
+    handleLoading(isLoading, loadingText = "Saving...") {
+        if(isLoading) {
+            this._submitButton.textContent = loadingText;
+        } else {
+            this._submitButton.textContent = this._submitButtonText;
         }
     }
 

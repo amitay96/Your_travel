@@ -104,10 +104,12 @@
       <li class="place">
         <img class="place__image" alt="place photo">
         <div class="place__title-area">
-        <img class="place__delete_button" src="<%=require('./images/icons/delete_icon.svg')%>" alt="delete place button">
+          <img class="place__delete_button" src="<%=require('./images/icons/delete_icon.svg')%>" alt="delete place button">
           <h2 class="place__title"></h2>
-          <button class="place__like-button" type="button"></button>
-          <span class="place__likes-count"></span>
+          <div class=".place__like-area">
+            <button class="place__like-button" type="button"></button>
+            <span class="place__likes-count"></span>
+          </div>
         </div>
       </li>
     </template>

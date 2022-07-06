@@ -19,10 +19,10 @@
     display: flex;
     gap: 8px;
     align-items: center;
-    padding: 25px 15px 24px 21px;
+    padding: 18px 15px 19px 21px;
     border-radius: 0 0 10px 10px;
 }
-  
+
 .place__title {
     margin: 0;
     text-overflow: ellipsis;
@@ -33,26 +33,6 @@
     font-size: 24px;
     line-height: 1.2;
     text-align: left;
-}
-  
-.place__like-button {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    background: url("../images/icons/like_icon.svg") center no-repeat;
-    background-size: cover;
-    min-width: 21px;
-    min-height: 19px;
-    transition: all 0.2s ease-out;
-    cursor: pointer;
-}
-  
-.place__like-button:hover {
-    opacity: 0.5;
-}
-  
-.place__like-button_active {
-    background: url("../images/icons/like_icon-active.svg");
 }
 
 .place__delete_button {
@@ -65,4 +45,35 @@
 
 .place__delete_button:hover {
     opacity: 0.5;
+}
+
+.place__like-area {
+    display: flex;
+    gap: 3px;
+}
+
+.place__like-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    background: url("../images/icons/like_icon.svg") center no-repeat;
+    background-size: cover;
+    min-width: 21px;
+    min-height: 19px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    display: block;
+}
+  
+.place__like-button:hover {
+    opacity: 0.5;
+}
+  
+.place__like-button_active {
+    background: url("../images/icons/like_icon-active.svg");
+}
+
+.place__likes-count {
+    font-size: 13px;
+    margin: 0;
 }
