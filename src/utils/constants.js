@@ -45,12 +45,7 @@ const editProfileButton = document.querySelector(".profile__edit-button");
 const addPlaceButton = document.querySelector(".profile__add-button");
 const avatar = document.querySelector(".profile__image-container");
 
-
-//----------------Inputs----------------
-const newNameInput = editProfilePopup.querySelector(".form__input[name='name']");
-const newTitleInput = editProfilePopup.querySelector(".form__input[name='title']");
-
 export {
   initialCards, validationSettings, editProfilePopup, addCardPopup,
-  editProfileButton, addPlaceButton, newNameInput, newTitleInput, avatar, avatarEditPopup
+  editProfileButton, addPlaceButton, avatar, avatarEditPopup
 };

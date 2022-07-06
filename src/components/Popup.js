@@ -1,8 +1,11 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popupElement = document.querySelector(popupSelector);
-        this._submitButton = document.querySelector(".form__button");
-        this._submitButtonText = this._submitButton.textContent;
+        this._submitButton = this._popupElement.querySelector(".form__button");
+        
+        if (this._submitButton) {
+            this._submitButtonText = this._submitButton.textContent;
+        }
     }
 
     open() {
@@ -30,16 +33,17 @@ export default class Popup {
     }
 
     handleLoading(isLoading, loadingText = "Saving...") {
-        if(isLoading) {
-            this._submitButton.textContent = loadingText;
-        } else {
-            this._submitButton.textContent = this._submitButtonText;
+        if (this._submitButton) {
+            if (isLoading) {
+                this._submitButton.textContent = loadingText;
+            } else {
+                this._submitButton.textContent = this._submitButtonText;
+            }
         }
     }
 
     setEventListeners() {
         const closeButton =  this._popupElement.querySelector(".popup__close-button");
-
         closeButton.addEventListener("mousedown", () => this.close());
     }
 }

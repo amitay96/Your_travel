@@ -1,10 +1,8 @@
-import { PopupWithImage } from "./PopupWithImage.js";
-
-
 export default class Card {
-    constructor({data, handleCardClick, handleDeleteCard, handleCardlike}, userId) {
+    constructor({data, handleCardClick, handleDeleteCard, handleCardlike}, templateSelector, userId) {
         this._name = data.name;
         this._link = data.link;
+        this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
         this._handleDeleteCard = handleDeleteCard;
         this._handleCardlike = handleCardlike;
@@ -16,7 +14,7 @@ export default class Card {
     }
 
     _getTemplate() {
-        const cardElement = document.querySelector("#place-template")
+        const cardElement = document.querySelector(this._templateSelector)
             .content.querySelector('.place').cloneNode(true);
         return cardElement;
     }
@@ -25,7 +23,10 @@ export default class Card {
         this._element = this._getTemplate();
         this._placeImage = this._element.querySelector(".place__image");
         const placeTitle = this._element.querySelector(".place__title");
-        
+
+        this._likeCounter = this._element.querySelector(".place__likes-count")
+        this._likeButton = this._element.querySelector(".place__like-button");
+
         this._placeImage.src = this._link;
         this._placeImage.alt = `Photo of ${this._name}`;
         placeTitle.textContent = this._name;
@@ -56,11 +57,9 @@ export default class Card {
 
     updateLikes(newLikes) {
         this._likes = newLikes;
-        this._element.querySelector(".place__likes-count").textContent = this._likes.length;
-        if(this.isLiked()) this._element.querySelector(".place__like-button")
-            .classList.add("place__like-button_active");
-        else this._element.querySelector(".place__like-button")
-            .classList.remove("place__like-button_active");
+        this._likeCounter.textContent = this._likes.length;
+        if(this.isLiked()) this._likeButton.classList.add("place__like-button_active");
+        else this._likeButton.classList.remove("place__like-button_active");
     }
 
     isLiked() {
