@@ -98,7 +98,6 @@ const addPopup = new PopupWithForm(".add-popup", (data) => {
   addPopup.handleLoading(true, "Creating...");
   api.createCard(data).then(res => {
     renderCard(res);
-    addPlaceFormValidator.resetValidation();
     addPopup.close();
   }).catch(err => console.log(err))
   .finally(() => addPopup.handleLoading(false));
@@ -111,37 +110,43 @@ const editPopup = new PopupWithForm(".edit-popup", (data) => {
     userInfo.setUserInfo(data.name, data.job);
     editPopup.close();
   }).catch(err => console.log(err))
-  .finally(() => editPopup.handleLoading(false));;
+  .finally(() => editPopup.handleLoading(false));
 });
 
 //----------------Form Validators----------------
-const profileFormValidator = new FormValidator(validationSettings, editProfilePopup);
-const addPlaceFormValidator = new FormValidator(validationSettings, addCardPopup);
-const avatarFormValidator = new FormValidator(validationSettings, avatarEditPopup);
+const formValidators = {}
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationSettings);
 
 //----------------Event listeners----------------
 editPopup.setEventListeners();
 addPopup.setEventListeners();
 deletePopup.setEventListeners();
 avatarPopup.setEventListeners();
-profileFormValidator.enableValidation();
-addPlaceFormValidator.enableValidation();
-avatarFormValidator.enableValidation();
 
 //----------------Event handlers----------------
 editProfileButton.addEventListener("click", () => {
-  profileFormValidator.resetValidation();
+  formValidators["edit-form"].resetValidation();
   editPopup.open();
-  console.log(userInfo.getUserInfo());
   editPopup.setInputValues(userInfo.getUserInfo());
 });
 
 addPlaceButton.addEventListener("click", () => {
-  addPlaceFormValidator.resetValidation();
+  formValidators["add-form"].resetValidation();
   addPopup.open();
 });
 
 avatar.addEventListener("click", () => {
-  avatarFormValidator.resetValidation();
+  formValidators[ "edit-avatar-form"].resetValidation();
   avatarPopup.open();
 });
